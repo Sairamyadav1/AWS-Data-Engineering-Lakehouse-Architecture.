@@ -1,0 +1,23 @@
+# AWS Data Engineering Lakehouse Architecture
+# Python Dependencies
+
+# AWS SDK
+boto3>=1.26.0
+botocore>=1.29.0
+
+# AWS Glue (for local development/testing)
+awsglue>=3.0.0
+
+# PySpark (matching AWS Glue version)
+pyspark>=3.3.0
+
+# Snowflake connector
+snowflake-connector-python>=3.0.0
+
+# Data processing
+pandas>=1.5.0
+numpy>=1.23.0
+
+# Utilities
+python-dotenv>=0.20.0
+PyYAML>=6.0

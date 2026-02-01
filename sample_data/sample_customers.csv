@@ -1,0 +1,11 @@
+customer_id,first_name,last_name,email,phone,registration_date
+CUST001,John,Doe,john.doe@email.com,+1-555-0101,2024-01-15T10:30:00Z
+CUST002,Jane,Smith,jane.smith@email.com,+1-555-0102,2024-01-16T11:45:00Z
+CUST003,Bob,Johnson,bob.johnson@email.com,+1-555-0103,2024-01-17T09:20:00Z
+CUST004,Alice,Williams,alice.williams@email.com,+1-555-0104,2024-01-18T14:15:00Z
+CUST005,Charlie,Brown,charlie.brown@email.com,+1-555-0105,2024-01-19T16:30:00Z
+CUST006,Diana,Davis,diana.davis@email.com,+1-555-0106,2024-01-20T08:45:00Z
+CUST007,Edward,Miller,edward.miller@email.com,+1-555-0107,2024-01-21T13:20:00Z
+CUST008,Fiona,Wilson,fiona.wilson@email.com,+1-555-0108,2024-01-22T10:10:00Z
+CUST009,George,Moore,george.moore@email.com,+1-555-0109,2024-01-23T15:30:00Z
+CUST010,Helen,Taylor,helen.taylor@email.com,+1-555-0110,2024-01-24T12:00:00Z
