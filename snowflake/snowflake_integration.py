@@ -24,19 +24,19 @@ class SnowflakeLakehouseIntegration:
         )
         self.cursor = self.conn.cursor(DictCursor)
     
-    def create_external_stage(self, stage_name, s3_path, aws_role_arn):
+    def create_external_stage(self, stage_name, s3_path, storage_integration_name='aws_integration'):
         """
         Create external stage pointing to S3 lakehouse
         
         Args:
             stage_name: Name of the Snowflake stage
             s3_path: S3 path (e.g., s3://bucket-name/gold/)
-            aws_role_arn: IAM role ARN for S3 access
+            storage_integration_name: Name of the Snowflake storage integration (default: 'aws_integration')
         """
         sql = f"""
         CREATE OR REPLACE STAGE {stage_name}
         URL = '{s3_path}'
-        STORAGE_INTEGRATION = aws_integration
+        STORAGE_INTEGRATION = {storage_integration_name}
         FILE_FORMAT = (TYPE = PARQUET);
         """
         
@@ -140,7 +140,7 @@ if __name__ == "__main__":
     sf_integration.create_external_stage(
         stage_name='gold_layer_stage',
         s3_path='s3://your-bucket/gold/',
-        aws_role_arn='arn:aws:iam::ACCOUNT_ID:role/SnowflakeS3Role'
+        storage_integration_name='aws_integration'
     )
     
     # Create external table

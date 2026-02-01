@@ -15,6 +15,14 @@ Parameters:
       - staging
       - prod
     Description: 'Environment name'
+  
+  AlertEmail:
+    Type: String
+    Default: ''
+    Description: 'Email address for SNS alerts (leave empty to skip email subscription)'
+
+Conditions:
+  HasAlertEmail: !Not [!Equals [!Ref AlertEmail, '']]
 
 Resources:
   # S3 Bucket for Lakehouse Storage
@@ -162,9 +170,11 @@ Resources:
     Properties:
       TopicName: !Sub '${ProjectName}-alerts'
       DisplayName: 'Lakehouse Pipeline Alerts'
-      Subscription:
-        - Endpoint: 'your-email@example.com'
-          Protocol: email
+      Subscription: !If
+        - HasAlertEmail
+        - - Endpoint: !Ref AlertEmail
+            Protocol: email
+        - !Ref AWS::NoValue
 
   # CloudWatch Log Group
   GlueJobLogGroup:
