@@ -50,5 +50,5 @@ Monitoring and logging are handled using **Amazon CloudWatch**, with secure acce
 
 ## Architecture Diagram 
 
-![AWS Data Engineering Architecture](ChatGPT%20Image%20Jan%2016,%202026,%2001_16_56%20AM.png)
+<img width="1536" height="1024" alt="ChatGPT Image Jan 16, 2026, 01_16_56 AM" src="https://github.com/user-attachments/assets/19edf1ef-5c47-40c3-ada8-871940bf965a" />
 
