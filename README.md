@@ -9,7 +9,6 @@ AWS Glue Crawlers are used to automatically create and update table schemas in t
 The curated data is queried using **Amazon Athena** and integrated with **Snowflake** for advanced analytics.  
 Monitoring and logging are handled using **Amazon CloudWatch**, with secure access managed via **AWS IAM**.
 
-![AWS Data Engineering Architecture](architecture/architecture-diagram.png)
 
 ---
 
@@ -48,3 +47,8 @@ Monitoring and logging are handled using **Amazon CloudWatch**, with secure acce
 - Querying large datasets using Athena  
 - Integrating AWS data lakes with Snowflake  
 - Implementing monitoring and secure access control
+
+## Architecture Diagram 
+
+![AWS Data Engineering Architecture](ChatGPT%20Image%20Jan%2016,%202026,%2001_16_56%20AM.png)
+
