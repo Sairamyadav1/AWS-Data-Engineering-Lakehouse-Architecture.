@@ -1,0 +1,58 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "GlueCrawlerPermissions",
+      "Effect": "Allow",
+      "Action": [
+        "glue:GetCrawler",
+        "glue:GetCrawlers",
+        "glue:StartCrawler",
+        "glue:StopCrawler",
+        "glue:GetCrawlerMetrics"
+      ],
+      "Resource": "arn:aws:glue:*:*:crawler/*"
+    },
+    {
+      "Sid": "S3CrawlerAccess",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::lakehouse-bucket-name/*",
+        "arn:aws:s3:::lakehouse-bucket-name"
+      ]
+    },
+    {
+      "Sid": "GlueCatalogWrite",
+      "Effect": "Allow",
+      "Action": [
+        "glue:CreateDatabase",
+        "glue:UpdateDatabase",
+        "glue:GetDatabase",
+        "glue:CreateTable",
+        "glue:UpdateTable",
+        "glue:GetTable",
+        "glue:CreatePartition",
+        "glue:UpdatePartition"
+      ],
+      "Resource": [
+        "arn:aws:glue:*:*:catalog",
+        "arn:aws:glue:*:*:database/*",
+        "arn:aws:glue:*:*:table/*"
+      ]
+    },
+    {
+      "Sid": "CloudWatchLogsAccess",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:*:*:log-group:/aws/glue/crawlers/*"
+    }
+  ]
+}
