@@ -1,0 +1,36 @@
+{
+  "Name": "gold-layer-crawler",
+  "Role": "arn:aws:iam::YOUR_ACCOUNT_ID:role/GlueServiceRole",
+  "DatabaseName": "gold_db",
+  "Description": "Crawler for Gold layer aggregated data",
+  "Targets": {
+    "S3Targets": [
+      {
+        "Path": "s3://your-gold-bucket/aggregated/",
+        "Exclusions": [
+          "*.tmp",
+          "*_$folder$",
+          "*.log"
+        ]
+      }
+    ]
+  },
+  "SchemaChangePolicy": {
+    "UpdateBehavior": "UPDATE_IN_DATABASE",
+    "DeleteBehavior": "LOG"
+  },
+  "RecrawlPolicy": {
+    "RecrawlBehavior": "CRAWL_NEW_FOLDERS_ONLY"
+  },
+  "LineageConfiguration": {
+    "CrawlerLineageSettings": "ENABLE"
+  },
+  "Configuration": "{\"Version\":1.0,\"CrawlerOutput\":{\"Partitions\":{\"AddOrUpdateBehavior\":\"InheritFromTable\"},\"Tables\":{\"TableThreshold\":10}}}",
+  "TablePrefix": "agg_",
+  "Schedule": "cron(0 4 * * ? *)",
+  "Tags": {
+    "Environment": "Production",
+    "Layer": "Gold",
+    "Project": "Lakehouse"
+  }
+}

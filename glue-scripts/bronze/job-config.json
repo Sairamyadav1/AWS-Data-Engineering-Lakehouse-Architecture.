@@ -1,0 +1,35 @@
+{
+  "Name": "bronze-ingestion-job",
+  "Description": "Ingests raw data into Bronze layer",
+  "Role": "arn:aws:iam::YOUR_ACCOUNT_ID:role/GlueETLRole",
+  "ExecutionProperty": {
+    "MaxConcurrentRuns": 3
+  },
+  "Command": {
+    "Name": "glueetl",
+    "ScriptLocation": "s3://your-scripts-bucket/glue-scripts/bronze/bronze_ingestion.py",
+    "PythonVersion": "3"
+  },
+  "DefaultArguments": {
+    "--job-language": "python",
+    "--job-bookmark-option": "job-bookmark-enable",
+    "--enable-metrics": "true",
+    "--enable-continuous-cloudwatch-log": "true",
+    "--enable-spark-ui": "true",
+    "--spark-event-logs-path": "s3://your-logs-bucket/spark-logs/",
+    "--source_path": "s3://your-bronze-bucket/raw-data/",
+    "--target_path": "s3://your-bronze-bucket/processed/",
+    "--database_name": "bronze_db",
+    "--table_name": "raw_data"
+  },
+  "MaxRetries": 1,
+  "Timeout": 60,
+  "GlueVersion": "4.0",
+  "NumberOfWorkers": 5,
+  "WorkerType": "G.1X",
+  "Tags": {
+    "Environment": "Production",
+    "Layer": "Bronze",
+    "Project": "Lakehouse"
+  }
+}

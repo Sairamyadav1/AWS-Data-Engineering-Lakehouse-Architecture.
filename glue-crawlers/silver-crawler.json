@@ -1,0 +1,36 @@
+{
+  "Name": "silver-layer-crawler",
+  "Role": "arn:aws:iam::YOUR_ACCOUNT_ID:role/GlueServiceRole",
+  "DatabaseName": "silver_db",
+  "Description": "Crawler for Silver layer cleaned data",
+  "Targets": {
+    "S3Targets": [
+      {
+        "Path": "s3://your-silver-bucket/cleaned/",
+        "Exclusions": [
+          "*.tmp",
+          "*_$folder$",
+          "*.log"
+        ]
+      }
+    ]
+  },
+  "SchemaChangePolicy": {
+    "UpdateBehavior": "UPDATE_IN_DATABASE",
+    "DeleteBehavior": "LOG"
+  },
+  "RecrawlPolicy": {
+    "RecrawlBehavior": "CRAWL_NEW_FOLDERS_ONLY"
+  },
+  "LineageConfiguration": {
+    "CrawlerLineageSettings": "ENABLE"
+  },
+  "Configuration": "{\"Version\":1.0,\"CrawlerOutput\":{\"Partitions\":{\"AddOrUpdateBehavior\":\"InheritFromTable\"}}}",
+  "TablePrefix": "clean_",
+  "Schedule": "cron(0 3 * * ? *)",
+  "Tags": {
+    "Environment": "Production",
+    "Layer": "Silver",
+    "Project": "Lakehouse"
+  }
+}

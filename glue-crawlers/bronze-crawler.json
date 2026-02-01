@@ -1,0 +1,34 @@
+{
+  "Name": "bronze-layer-crawler",
+  "Role": "arn:aws:iam::YOUR_ACCOUNT_ID:role/GlueServiceRole",
+  "DatabaseName": "bronze_db",
+  "Description": "Crawler for Bronze layer raw data",
+  "Targets": {
+    "S3Targets": [
+      {
+        "Path": "s3://your-bronze-bucket/processed/",
+        "Exclusions": [
+          "*.tmp",
+          "*_$folder$"
+        ]
+      }
+    ]
+  },
+  "SchemaChangePolicy": {
+    "UpdateBehavior": "UPDATE_IN_DATABASE",
+    "DeleteBehavior": "LOG"
+  },
+  "RecrawlPolicy": {
+    "RecrawlBehavior": "CRAWL_NEW_FOLDERS_ONLY"
+  },
+  "LineageConfiguration": {
+    "CrawlerLineageSettings": "ENABLE"
+  },
+  "Configuration": "{\"Version\":1.0,\"CrawlerOutput\":{\"Partitions\":{\"AddOrUpdateBehavior\":\"InheritFromTable\"}}}",
+  "Schedule": "cron(0 2 * * ? *)",
+  "Tags": {
+    "Environment": "Production",
+    "Layer": "Bronze",
+    "Project": "Lakehouse"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "Name": "silver-transformation-job",
+  "Description": "Cleans and transforms Bronze data to Silver layer",
+  "Role": "arn:aws:iam::YOUR_ACCOUNT_ID:role/GlueETLRole",
+  "ExecutionProperty": {
+    "MaxConcurrentRuns": 2
+  },
+  "Command": {
+    "Name": "glueetl",
+    "ScriptLocation": "s3://your-scripts-bucket/glue-scripts/silver/silver_transformation.py",
+    "PythonVersion": "3"
+  },
+  "DefaultArguments": {
+    "--job-language": "python",
+    "--job-bookmark-option": "job-bookmark-enable",
+    "--enable-metrics": "true",
+    "--enable-continuous-cloudwatch-log": "true",
+    "--enable-spark-ui": "true",
+    "--spark-event-logs-path": "s3://your-logs-bucket/spark-logs/",
+    "--bronze_database": "bronze_db",
+    "--bronze_table": "raw_data",
+    "--silver_path": "s3://your-silver-bucket/cleaned/",
+    "--silver_database": "silver_db",
+    "--silver_table": "cleaned_data"
+  },
+  "MaxRetries": 2,
+  "Timeout": 90,
+  "GlueVersion": "4.0",
+  "NumberOfWorkers": 10,
+  "WorkerType": "G.1X",
+  "Tags": {
+    "Environment": "Production",
+    "Layer": "Silver",
+    "Project": "Lakehouse"
+  }
+}
