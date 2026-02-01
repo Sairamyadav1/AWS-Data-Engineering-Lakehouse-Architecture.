@@ -1,0 +1,87 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "S3BucketAccess",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::your-bronze-bucket/*",
+        "arn:aws:s3:::your-silver-bucket/*",
+        "arn:aws:s3:::your-gold-bucket/*",
+        "arn:aws:s3:::your-scripts-bucket/*"
+      ]
+    },
+    {
+      "Sid": "S3BucketList",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetBucketLocation"
+      ],
+      "Resource": [
+        "arn:aws:s3:::your-bronze-bucket",
+        "arn:aws:s3:::your-silver-bucket",
+        "arn:aws:s3:::your-gold-bucket",
+        "arn:aws:s3:::your-scripts-bucket"
+      ]
+    },
+    {
+      "Sid": "GlueCatalogAccess",
+      "Effect": "Allow",
+      "Action": [
+        "glue:GetDatabase",
+        "glue:GetTable",
+        "glue:GetPartition",
+        "glue:GetPartitions",
+        "glue:CreateTable",
+        "glue:UpdateTable",
+        "glue:DeleteTable",
+        "glue:BatchCreatePartition",
+        "glue:BatchDeletePartition",
+        "glue:BatchUpdatePartition",
+        "glue:CreatePartition",
+        "glue:UpdatePartition",
+        "glue:DeletePartition"
+      ],
+      "Resource": [
+        "arn:aws:glue:*:*:catalog",
+        "arn:aws:glue:*:*:database/bronze_db",
+        "arn:aws:glue:*:*:database/silver_db",
+        "arn:aws:glue:*:*:database/gold_db",
+        "arn:aws:glue:*:*:table/bronze_db/*",
+        "arn:aws:glue:*:*:table/silver_db/*",
+        "arn:aws:glue:*:*:table/gold_db/*"
+      ]
+    },
+    {
+      "Sid": "CloudWatchLogs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": [
+        "arn:aws:logs:*:*:/aws-glue/*"
+      ]
+    },
+    {
+      "Sid": "CloudWatchMetrics",
+      "Effect": "Allow",
+      "Action": [
+        "cloudwatch:PutMetricData"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "cloudwatch:namespace": "Glue"
+        }
+      }
+    }
+  ]
+}

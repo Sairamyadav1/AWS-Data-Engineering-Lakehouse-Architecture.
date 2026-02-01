@@ -1,0 +1,36 @@
+{
+  "Name": "gold-aggregation-job",
+  "Description": "Creates business-level aggregations in Gold layer",
+  "Role": "arn:aws:iam::YOUR_ACCOUNT_ID:role/GlueETLRole",
+  "ExecutionProperty": {
+    "MaxConcurrentRuns": 1
+  },
+  "Command": {
+    "Name": "glueetl",
+    "ScriptLocation": "s3://your-scripts-bucket/glue-scripts/gold/gold_aggregation.py",
+    "PythonVersion": "3"
+  },
+  "DefaultArguments": {
+    "--job-language": "python",
+    "--job-bookmark-option": "job-bookmark-enable",
+    "--enable-metrics": "true",
+    "--enable-continuous-cloudwatch-log": "true",
+    "--enable-spark-ui": "true",
+    "--spark-event-logs-path": "s3://your-logs-bucket/spark-logs/",
+    "--silver_database": "silver_db",
+    "--silver_table": "cleaned_data",
+    "--gold_path": "s3://your-gold-bucket/aggregated/",
+    "--gold_database": "gold_db",
+    "--gold_table": "daily_summary"
+  },
+  "MaxRetries": 2,
+  "Timeout": 120,
+  "GlueVersion": "4.0",
+  "NumberOfWorkers": 10,
+  "WorkerType": "G.2X",
+  "Tags": {
+    "Environment": "Production",
+    "Layer": "Gold",
+    "Project": "Lakehouse"
+  }
+}

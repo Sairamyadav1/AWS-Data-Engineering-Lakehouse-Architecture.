@@ -1,0 +1,66 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AthenaQueryAccess",
+      "Effect": "Allow",
+      "Action": [
+        "athena:StartQueryExecution",
+        "athena:GetQueryExecution",
+        "athena:GetQueryResults",
+        "athena:StopQueryExecution",
+        "athena:GetWorkGroup"
+      ],
+      "Resource": [
+        "arn:aws:athena:*:*:workgroup/*"
+      ]
+    },
+    {
+      "Sid": "GlueCatalogRead",
+      "Effect": "Allow",
+      "Action": [
+        "glue:GetDatabase",
+        "glue:GetTable",
+        "glue:GetPartitions"
+      ],
+      "Resource": [
+        "arn:aws:glue:*:*:catalog",
+        "arn:aws:glue:*:*:database/*",
+        "arn:aws:glue:*:*:table/*"
+      ]
+    },
+    {
+      "Sid": "S3QueryResults",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetBucketLocation",
+        "s3:GetObject",
+        "s3:ListBucket",
+        "s3:ListBucketMultipartUploads",
+        "s3:ListMultipartUploadParts",
+        "s3:AbortMultipartUpload",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::aws-athena-query-results-*/*",
+        "arn:aws:s3:::aws-athena-query-results-*"
+      ]
+    },
+    {
+      "Sid": "S3DataRead",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::your-bronze-bucket/*",
+        "arn:aws:s3:::your-silver-bucket/*",
+        "arn:aws:s3:::your-gold-bucket/*",
+        "arn:aws:s3:::your-bronze-bucket",
+        "arn:aws:s3:::your-silver-bucket",
+        "arn:aws:s3:::your-gold-bucket"
+      ]
+    }
+  ]
+}

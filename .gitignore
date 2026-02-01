@@ -1,0 +1,104 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# AWS
+.aws/
+credentials
+config.env
+
+# Environment variables
+.env
+.env.local
+
+# Test files
+test-output/
+coverage/
+.pytest_cache/
+
+# Data files (don't commit large datasets)
+*.csv.gz
+*.parquet
+*.orc
+data/
+raw-data/
+processed-data/
+
+# Glue temp files
+temp/
+tmp/
+GlueTemp*/
+
+# Athena query results
+athena-results/
+query-results/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# CloudFormation
+packaged-*.yaml
+
+# Spark
+derby.log
+metastore_db/
+spark-warehouse/
+
+# Documentation build
+site/
+_build/
+
+# Ignore custom config files (keep templates)
+config.yaml
+config.json
+!config.example.*
+
+# Ignore local scripts
+local-*.sh
+local-*.py

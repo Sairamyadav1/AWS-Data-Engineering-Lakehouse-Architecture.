@@ -1,0 +1,50 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "GlueCrawlerAccess",
+      "Effect": "Allow",
+      "Action": [
+        "glue:GetDatabase",
+        "glue:CreateTable",
+        "glue:UpdateTable",
+        "glue:GetTable",
+        "glue:GetPartitions",
+        "glue:CreatePartition",
+        "glue:UpdatePartition",
+        "glue:BatchCreatePartition"
+      ],
+      "Resource": [
+        "arn:aws:glue:*:*:catalog",
+        "arn:aws:glue:*:*:database/*",
+        "arn:aws:glue:*:*:table/*"
+      ]
+    },
+    {
+      "Sid": "S3ReadAccess",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::your-bronze-bucket/*",
+        "arn:aws:s3:::your-silver-bucket/*",
+        "arn:aws:s3:::your-gold-bucket/*",
+        "arn:aws:s3:::your-bronze-bucket",
+        "arn:aws:s3:::your-silver-bucket",
+        "arn:aws:s3:::your-gold-bucket"
+      ]
+    },
+    {
+      "Sid": "CloudWatchLogs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:*:*:/aws-glue/crawlers/*"
+    }
+  ]
+}
