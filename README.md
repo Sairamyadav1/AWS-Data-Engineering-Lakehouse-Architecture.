@@ -23,21 +23,6 @@ Monitoring and logging are handled using **Amazon CloudWatch**, with secure acce
 - Monitoring: Amazon CloudWatch  
 - Security: AWS IAM roles and policies
 
----
-
-## Technologies Used
-
-**Amazon Web Services (AWS)**
-
-1. Amazon S3 (Bronze, Silver, Gold Data Lake)
-2. AWS Glue (ETL Jobs)
-3. AWS Glue Crawler
-4. Amazon Athena
-5. Amazon CloudWatch
-6. AWS IAM
-7. Snowflake
-
----
 
 ## Key Learnings
 
